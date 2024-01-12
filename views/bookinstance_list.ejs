@@ -1,0 +1,39 @@
+<%- include('./partials/head') %>
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-sm-2">
+        <%# Sidebar menu %>
+        <%- include('./partials/sidebar') %>
+
+      </div>
+
+      <div class="col-sm-10">
+        <%# Body content %>
+        <h1><%= title %></h1>
+          <% if (bookinstance_list.length) { %>
+            <ul>
+              <% bookinstance_list.forEach(val=> { %>
+                <li>
+                  <a href='val.url'> <%= val.book.title%> &colon; <%= val.imprint %> &nbsp; </a>
+                  <% if (val.status === 'Avalable') { %>
+                    <span class='text-success'> <%= val.status %> </span>
+                  <% } else if (val.status === 'Maintenance') { %>
+                    <span class='text-danger'> <%= val.status %> </span>
+                  <% } else { %>
+                    <span class='text-warning'> <%= val.status %> </span>
+                  <% } %>
+                  <% if (val.status !== 'Available') { %>
+                    <span>&lpar;Due &colon; <%= val.due_back %> &rpar;</span>
+                  <% } %>
+                </li>
+              <% }) %>
+            </ul>
+            <% } else { %>
+             <p>There are no book copies in this library.</p>
+          <% } %>
+      </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>
