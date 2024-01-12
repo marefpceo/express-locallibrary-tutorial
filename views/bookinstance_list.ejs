@@ -24,7 +24,7 @@
                     <span class='text-warning'> <%= val.status %> </span>
                   <% } %>
                   <% if (val.status !== 'Available') { %>
-                    <span>&lpar;Due &colon; <%= val.due_back %> &rpar;</span>
+                    <span>&lpar;Due&colon; <%= val.due_back_formatted %> &rpar;</span>
                   <% } %>
                 </li>
               <% }) %>
