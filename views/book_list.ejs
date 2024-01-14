@@ -15,7 +15,8 @@
             <ul>
               <% book_list.forEach(book=> { %>
                 <li>
-                  <a href='book.url'> <%= book.title || book.author.name%></a>
+                  <a href='<%= book.url %>'> <%= book.title %></a>
+                  &lpar;<%= book.author.name %>&rpar;
                 </li>
               <% }) %>
             </ul>
