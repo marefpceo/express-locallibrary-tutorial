@@ -51,7 +51,7 @@
             <div>
               <% genres.forEach(genre => { %>
                <div style='display: inline; padding-right:10px;'>
-                <% if (genre.check) { %>
+                <% if (genre.checked) { %>
                  <input type='checkbox' class='checkbox-input' name='genre' id='<%= genre._id %>'
                   value='<%= genre._id %>' checked>
                   <% } else { %>
