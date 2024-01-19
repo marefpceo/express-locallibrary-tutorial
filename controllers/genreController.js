@@ -76,7 +76,7 @@ exports.genre_delete_get = asyncHandler(async (req, res, next) => {
   // Get details of genres and all of their books (in parallel)
   const [genre, allBooksByGenre] = await Promise.all([
     Genre.findById(req.params.id).exec(),
-    Book.find({ genre: req.params.id}, 'title summary').exec(),
+    Book.find({ genre: req.params.id }, 'title summary').exec(),
   ]);
 
   if (genre === null) {
