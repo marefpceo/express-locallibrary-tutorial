@@ -25,14 +25,14 @@
           <div class='form-group'>
             <label for='date_of_birth'>Date of birth: </label>
             <input type='date' id='date_of_birth' class='form-control' name='date_of_birth' 
-              value='<%= typeof author ? '' : author.date_of_birth %>'>
+              value='<%= typeof author === 'undefined' ? '' : author.date_of_birth_yyyy_mm_dd %>'>
             <button class='btn btn-primary' type='submit'>Submit</button>   
           </div>
 
           <div class='form-group'>
             <label for='date_of_death'>Date of death: </label>
             <input type='date' id='date_of_death' class='form-control' name='date_of_death' 
-              value='<%= typeof author ? '' : author.date_of_death %>'>
+              value='<%= typeof author === 'undefined' ? '' : author.date_of_death_yyyy_mm_dd %>'>
             <button class='btn btn-primary' type='submit'>Submit</button>   
           </div>
         </form>
