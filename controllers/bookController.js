@@ -222,6 +222,7 @@ exports.book_update_post = [
     next();
   },
 
+  // Validate and sanitize fields
   body('title', 'Title must not be empty.')
     .trim()
     .isLength({ min: 1 })
@@ -240,7 +241,9 @@ exports.book_update_post = [
     .escape(),
   body('genre.*').escape(),
 
+  // Process request after validation and sanitization.
   asyncHandler(async (req, res, next) => {
+    // Extract the validation errors from a request
     const errors = validationResult(req);
 
     const book = new Book({
@@ -249,7 +252,7 @@ exports.book_update_post = [
       summary: req.body.summary,
       isbn: req.body.isbn,
       genre: typeof req.body.genre === 'undefined' ? [] : req.body.genre,
-      _id: req.params.id,
+      _id: req.params.id,  // This is required, or a new ID will be assigned!
     });
 
     if (!errors.isEmpty()) {
@@ -272,6 +275,7 @@ exports.book_update_post = [
       });
       return;
     } else {
+      // Data from form is valid. Update the record.
       const updatedBook = await Book.findByIdAndUpdate(req.params.id, book, {});
       res.redirect(updatedBook.url);
     }

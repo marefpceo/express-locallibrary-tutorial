@@ -18,7 +18,7 @@
             <select name='book' id='book' class='form-control' required>
               <option value=''>--Please select a book--</option>
               <% book_list.forEach(book => { %>
-                <% if (typeof selected_book === book._id.toString()) { %>
+                <% if (selected_book == book._id.toString()) { %>
                   <option value='<%= book._id %>' selected><%= book.title %></option>
                   <% } else { %>
                    <option value='<%= book._id %>'><%= book.title %></option>
@@ -46,7 +46,7 @@
                 <% if ((typeof bookinstance === 'undefined') || (bookinstance.status !== val)) { %>
                  <option value='<%= val %>'><%= val %></option>
                  <% } else { %>
-                  <option value='<%= val %>' selected></option>
+                  <option value='<%= val %>' selected><%= val %></option>
                 <% } %>
               <% }) %>
             </select>
