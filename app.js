@@ -13,6 +13,15 @@ const helmet = require('helmet');
 // Create the Express application object
 const app = express();
 
+// Add helmet to middleware chain
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net'],
+    },
+  }),
+);
+
 // Set up rate limiter: maximum of twenty requests per minute
 const RateLimit = require('express-rate-limit');
 const limiter = RateLimit({
@@ -34,14 +43,7 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
-// Add helmet to middleware chain
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net'],
-    },
-  }),
-);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
